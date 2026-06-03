@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Feedback Form - Task 6</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="text"]:invalid {
+            border-color: #ff6b6b;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            color: #51cf66;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .fee-display {
+            background: #f0f4ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            color: #667eea;
+            font-weight: 600;
+            display: none;
+        }
+
+        .fee-display.show {
+            display: block;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .char-counter {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .image-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #e0e0e0;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .enlarged-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #764ba2;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .submit-btn,
+        .reset-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .reset-btn {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .reset-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .confirmation-modal {
+            z-index: 2;
+        }
+
+        .confirmation-modal .modal-content {
+            background: white;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-yes {
+            background: #51cf66;
+            color: white;
+        }
+
+        .confirm-yes:hover {
+            background: #40c057;
+        }
+
+        .confirm-no {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .confirm-no:hover {
+            background: #d0d0d0;
+        }
+
+        .success-feedback {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .success-feedback.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Feedback Form</h1>
+        <p class="subtitle">Test all event handlers - Real-time validation & interactions</p>
+
+        <form id="feedbackForm">
+            <!-- Phone Number Field with onblur -->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input 
+                    type="text" 
+                    id="phone" 
+                    placeholder="Enter 10-digit phone number (e.g., 9876543210)"
+                    onblur="validatePhoneNumber()"
+                >
+                <div class="error-message" id="phoneError"></div>
+                <div class="success-message" id="phoneSuccess"></div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="Enter your email address"
+                    required
+                >
+            </div>
+
+            <!-- Event Selection Dropdown with onchange -->
+            <div class="form-group">
+                <label for="eventType">Event Type</label>
+                <select id="eventType" onchange="displayEventFee()">
+                    <option value="">-- Select an event --</option>
+                    <option value="conference">Conference</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="seminar">Seminar</option>
+                    <option value="webinar">Webinar</option>
+                </select>
+                <div class="fee-display" id="feeDisplay"></div>
+            </div>
+
+            <!-- Feedback Textarea with keyboard events -->
+            <div class="form-group">
+                <label for="feedback">Your Feedback</label>
+                <textarea 
+                    id="feedback" 
+                    placeholder="Share your thoughts and experiences (Max 500 characters)..."
+                    onkeyup="countCharacters()"
+                    onkeydown="countCharacters()"
+                ></textarea>
+                <div class="char-counter">
+                    <span id="charCount">0</span>/500 characters
+                </div>
+            </div>
+
+            <!-- Image with ondblclick -->
+            <div class="form-group">
+                <label>Event Image (Double-click to enlarge)</label>
+                <div class="image-container">
+                    <img 
+                        id="eventImage" 
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect fill='%23667eea' width='300' height='200'/%3E%3Ctext x='50%' y='50%' font-size='24' fill='white' text-anchor='middle' dominant-baseline='middle'%3EClick to Enlarge%3C/text%3E%3C/svg%3E" 
+                        alt="Event Image"
+                        ondblclick="enlargeImage()"
+                        title="Double-click to enlarge"
+                    >
+                    <div class="image-hint">💡 Double-click the image to enlarge it</div>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="button" class="submit-btn" onclick="handleSubmit()">Submit Feedback</button>
+                <button type="reset" class="reset-btn">Clear Form</button>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-feedback" id="successFeedback">
+                ✓ Feedback submitted successfully!
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal for Enlarged Image -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="enlargedImage" class="enlarged-image" src="" alt="Enlarged event image">
+            <button class="close-btn" onclick="closeImageModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Modal for Confirmation -->
+    <div id="confirmationModal" class="modal confirmation-modal">
+        <div class="modal-content">
+            <h2>Confirm Submission</h2>
+            <p>Are you sure you want to submit this feedback?</p>
+            <div class="modal-buttons">
+                <button class="confirm-yes" onclick="submitFeedback()">Yes, Submit</button>
+                <button class="confirm-no" onclick="closeConfirmation()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Event Fee Data
+        const eventFees = {
+            conference: "$150.00",
+            workshop: "$75.00",
+            seminar: "$50.00",
+            webinar: "Free"
+        };
+
+        // Phone Number Validation - onblur event
+        function validatePhoneNumber() {
+            const phoneInput = document.getElementById("phone");
+            const phoneError = document.getElementById("phoneError");
+            const phoneSuccess = document.getElementById("phoneSuccess");
+            const phoneValue = phoneInput.value.trim();
+
+            // Reset messages
+            phoneError.textContent = "";
+            phoneSuccess.textContent = "";
+            phoneError.classList.remove("show");
+            phoneSuccess.classList.remove("show");
+
+            if (phoneValue === "") {
+                // Empty is acceptable on blur, no error
+                return;
+            }
+
+            // Phone number validation: 10 digits
+            const phoneRegex = /^\d{10}$/;
+
+            if (!phoneRegex.test(phoneValue)) {
+                phoneError.textContent = "❌ Please enter a valid 10-digit phone number";
+                phoneError.classList.add("show");
+                phoneInput.style.borderColor = "#ff6b6b";
+            } else {
+                phoneSuccess.textContent = "✓ Phone number is valid";
+                phoneSuccess.classList.add("show");
+                phoneInput.style.borderColor = "#51cf66";
+            }
+        }
+
+        // Display Event Fee - onchange event
+        function displayEventFee() {
+            const eventType = document.getElementById("eventType").value;
+            const feeDisplay = document.getElementById("feeDisplay");
+
+            if (eventType === "") {
+                feeDisplay.classList.remove("show");
+                return;
+            }
+
+            const fee = eventFees[eventType];
+            feeDisplay.textContent = `💰 Event Fee: ${fee}`;
+            feeDisplay.classList.add("show");
+        }
+
+        // Count Characters - onkeyup and onkeydown events
+        function countCharacters() {
+            const feedback = document.getElementById("feedback");
+            const charCount = document.getElementById("charCount");
+            const maxChars = 500;
+
+            let text = feedback.value;
+
+            // Limit to 500 characters
+            if (text.length > maxChars) {
+                feedback.value = text.substring(0, maxChars);
+                text = feedback.value;
+            }
+
+            charCount.textContent = text.length;
+
+            // Change color as it approaches limit
+            if (text.length > 450) {
+                charCount.style.color = "#ff6b6b";
+            } else if (text.length > 350) {
+                charCount.style.color = "#ffa94d";
+            } else {
+                charCount.style.color = "#999";
+            }
+        }
+
+        // Enlarge Image - ondblclick event
+        function enlargeImage() {
+            const imageModal = document.getElementById("imageModal");
+            const enlargedImage = document.getElementById("enlargedImage");
+            const eventImage = document.getElementById("eventImage");
+
+            enlargedImage.src = eventImage.src;
+            imageModal.classList.add("show");
+        }
+
+        // Close Image Modal
+        function closeImageModal() {
+            const imageModal = document.getElementById("imageModal");
+            imageModal.classList.remove("show");
+        }
+
+        // Handle Submit - onclick event
+        function handleSubmit() {
+            // Validate required fields
+            const email = document.getElementById("email").value;
+            const eventType = document.getElementById("eventType").value;
+
+            if (!email) {
+                alert("Please enter your email address");
+                return;
+            }
+
+            if (!eventType) {
+                alert("Please select an event type");
+                return;
+            }
+
+            // Show confirmation modal
+            const confirmationModal = document.getElementById("confirmationModal");
+            confirmationModal.classList.add("show");
+        }
+
+        // Submit Feedback
+        function submitFeedback() {
+            const form = document.getElementById("feedbackForm");
+            const successFeedback = document.getElementById("successFeedback");
+            const confirmationModal = document.getElementById("confirmationModal");
+
+            // Collect form data
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const eventType = document.getElementById("eventType").value;
+            const feedback = document.getElementById("feedback").value;
+
+            // Log the data (in a real app, this would be sent to a server)
+            console.log("Form Submitted:", {
+                phone,
+                email,
+                eventType,
+                feedback,
+                timestamp: new Date().toISOString()
+            });
+
+            // Close confirmation modal
+            confirmationModal.classList.remove("show");
+
+            // Show success message
+            successFeedback.classList.add("show");
+
+            // Reset form after 2 seconds
+            setTimeout(() => {
+                form.reset();
+                successFeedback.classList.remove("show");
+                document.getElementById("phone").style.borderColor = "#e0e0e0";
+                document.getElementById("feeDisplay").classList.remove("show");
+                document.getElementById("charCount").textContent = "0";
+                document.getElementById("charCount").style.color = "#999";
+            }, 2000);
+        }
+
+        // Close Confirmation Modal
+        function closeConfirmation() {
+            const confirmationModal = document.getElementById("confirmationModal");
+            confirmationModal.classList.remove("show");
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const imageModal = document.getElementById("imageModal");
+            const confirmationModal = document.getElementById("confirmationModal");
+
+            if (event.target === imageModal) {
+                imageModal.classList.remove("show");
+            }
+
+            if (event.target === confirmationModal) {
+                confirmationModal.classList.remove("show");
+            }
+        }
+
+        // Prevent form submission on Enter in textarea
+        document.getElementById("feedback").addEventListener("keypress", function(event) {
+            if (event.key === "Enter" && event.ctrlKey) {
+                handleSubmit();
+            }
+        });
+    </script>
+</body>
+</html>

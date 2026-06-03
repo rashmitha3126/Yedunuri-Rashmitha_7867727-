@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Invite with Media Events</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .video-section {
+            margin-bottom: 30px;
+        }
+
+        .video-label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: #000;
+            display: block;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-status {
+            padding: 12px 16px;
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .video-status.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .video-status.ready {
+            background: #ecfdf5;
+            border-left-color: #10b981;
+            color: #059669;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-section {
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            resize: vertical;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        button.submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        button.submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button.submit:active {
+            transform: translateY(0);
+        }
+
+        button.reset {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        button.reset:hover {
+            background: #e0e0e0;
+        }
+
+        .success-message {
+            display: none;
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+            color: #065f46;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .warning-icon {
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .form-status {
+            font-size: 12px;
+            color: #999;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Event Video Invite</h1>
+        <p class="subtitle">Watch the event promo video and complete the form below</p>
+
+        <!-- Video Section -->
+        <div class="video-section">
+            <label class="video-label">Event Promo Video</label>
+            <video id="eventVideo" controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-status" id="videoStatus">
+                <span class="warning-icon">⏳</span>Video is loading...
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            ✅ Form submitted successfully! Thank you for your interest in our event.
+        </div>
+
+        <!-- Form Section -->
+        <form id="inviteForm" class="form-section">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" placeholder="(123) 456-7890">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Why are you interested in this event? *</label>
+                <textarea id="message" name="message" required placeholder="Tell us about your interest..."></textarea>
+            </div>
+
+            <div class="form-status" id="formStatus">
+                Form is incomplete. Complete all required fields and watch the video before submitting.
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="submit">Submit RSVP</button>
+                <button type="reset" class="reset">Clear Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const eventVideo = document.getElementById('eventVideo');
+        const videoStatus = document.getElementById('videoStatus');
+        const inviteForm = document.getElementById('inviteForm');
+        const successMessage = document.getElementById('successMessage');
+        const formStatus = document.getElementById('formStatus');
+        let formModified = false;
+        let videoReady = false;
+
+        // ===== Video oncanplay Event =====
+        // This event fires when the browser can play the media
+        eventVideo.addEventListener('canplay', function() {
+            videoReady = true;
+            videoStatus.classList.add('show', 'ready');
+            videoStatus.innerHTML = '<span class="warning-icon">✅</span>Video ready to play!';
+            console.log('Video can now be played');
+        });
+
+        // Additional video events for better UX
+        eventVideo.addEventListener('play', function() {
+            console.log('Video started playing');
+        });
+
+        eventVideo.addEventListener('pause', function() {
+            console.log('Video paused');
+        });
+
+        eventVideo.addEventListener('loadstart', function() {
+            videoStatus.classList.add('show');
+            videoStatus.innerHTML = '<span class="warning-icon">⏳</span>Loading video...';
+        });
+
+        eventVideo.addEventListener('playing', function() {
+            videoStatus.classList.remove('show');
+        });
+
+        eventVideo.addEventListener('seeking', function() {
+            videoStatus.classList.add('show');
+            videoStatus.innerHTML = '<span class="warning-icon">⏳</span>Seeking...';
+        });
+
+        // ===== Track Form Changes =====
+        inviteForm.addEventListener('change', function() {
+            formModified = true;
+            updateFormStatus();
+        });
+
+        inviteForm.addEventListener('input', function() {
+            formModified = true;
+            updateFormStatus();
+        });
+
+        function updateFormStatus() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (fullName && email && message) {
+                formStatus.textContent = '✓ All required fields completed. Ready to submit!';
+                formStatus.style.color = '#10b981';
+            } else {
+                formStatus.textContent = 'Form is incomplete. Complete all required fields and watch the video before submitting.';
+                formStatus.style.color = '#999';
+            }
+        }
+
+        // ===== Form Submit =====
+        inviteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Show success message
+            successMessage.classList.add('show');
+            formModified = false;
+
+            // Reset form
+            inviteForm.reset();
+            updateFormStatus();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+
+            console.log('Form submitted successfully');
+        });
+
+        // ===== onbeforeunload Event =====
+        // This event fires when user tries to leave the page (close tab, navigate away, etc.)
+        window.addEventListener('beforeunload', function(e) {
+            // Only warn if form has been modified and not yet submitted
+            if (formModified) {
+                // For most modern browsers, you can only return a boolean or string
+                // The browser will display a generic warning message
+                e.preventDefault();
+                e.returnValue = '';
+
+                // For older browsers, you can set a custom message (but most modern browsers ignore it)
+                console.warn('User is trying to leave with an incomplete form');
+                return 'You have unsaved changes in the form. Are you sure you want to leave?';
+            }
+        });
+
+        // Clear the warning after successful submission
+        inviteForm.addEventListener('submit', function() {
+            formModified = false;
+        });
+
+        // Reset form also clears the warning
+        inviteForm.addEventListener('reset', function() {
+            formModified = false;
+        });
+
+        console.log('✓ Video Invite page loaded successfully');
+        console.log('✓ Video oncanplay event listener attached');
+        console.log('✓ onbeforeunload warning system activated');
+    </script>
+</body>
+</html>

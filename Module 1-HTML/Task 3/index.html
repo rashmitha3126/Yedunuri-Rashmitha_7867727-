@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Message with Styling and ID/Class</title>
+    <style>
+        /* Internal CSS for welcomeBanner ID */
+        #welcomeBanner {
+            background-color: blue;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CSS class for highlight elements */
+        .highlight {
+            background-color: yellow;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* General styling for better appearance */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .offer-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid blue;
+        }
+
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Banner with ID (styled with internal CSS) -->
+    <div id="welcomeBanner">
+        <h1>Welcome Back, User! 🎉</h1>
+        <p>We're excited to have you here. Enjoy exploring our platform.</p>
+    </div>
+
+    <!-- Special Offer Section with inline styles and highlight class -->
+    <div class="offer-section">
+        <h2>Special Offer Just For You!</h2>
+        <p>
+            Check out our <span class="highlight">exclusive deal</span> available today. 
+            <span style="color: red; font-weight: bold;">Get 20% off on all products!</span>
+        </p>
+        <p>
+            This limited-time offer is perfect for <span class="highlight">loyal customers</span> like you. 
+            Don't miss out on this <span style="color: red; font-weight: bold;">amazing opportunity!</span>
+        </p>
+    </div>
+
+    <!-- Additional content demonstrating multiple highlight usages -->
+    <div class="offer-section">
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>✓ <span class="highlight">Fast Shipping</span> - Delivered in 2-3 business days</li>
+            <li>✓ Quality Products - All items are carefully <span class="highlight">hand-selected</span></li>
+            <li>✓ Best Price - <span style="color: red; font-weight: bold;">Price match guarantee!</span></li>
+            <li>✓ Excellent Support - <span class="highlight">24/7 customer service</span> available</li>
+        </ul>
+    </div>
+
+</body>
+</html>

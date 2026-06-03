@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Preferences - Task 8</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Event Type Preferences</h1>
+            <p>Save your preferred event type for a better experience</p>
+        </header>
+
+        <main>
+            <section class="preferences-section">
+                <h2>Select Your Preferred Event Type</h2>
+                <form id="preferencesForm">
+                    <div class="form-group">
+                        <label for="eventType">Event Type:</label>
+                        <select id="eventType" name="eventType" required>
+                            <option value="">-- Choose an event type --</option>
+                            <option value="concert">Concert</option>
+                            <option value="conference">Conference</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="webinar">Webinar</option>
+                            <option value="meetup">Meetup</option>
+                            <option value="festival">Festival</option>
+                        </select>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Save Preference</button>
+                        <button type="button" id="clearBtn" class="btn btn-danger">Clear Preferences</button>
+                    </div>
+                </form>
+
+                <div id="message" class="message"></div>
+            </section>
+
+            <section class="info-section">
+                <h2>Storage Information</h2>
+                <div class="storage-info">
+                    <div class="storage-item">
+                        <h3>Current Preference</h3>
+                        <p id="currentPreference">No preference saved</p>
+                    </div>
+
+                    <div class="storage-item">
+                        <h3>localStorage Data</h3>
+                        <pre id="localStorageData">Empty</pre>
+                    </div>
+
+                    <div class="storage-item">
+                        <h3>sessionStorage Data</h3>
+                        <pre id="sessionStorageData">Empty</pre>
+                    </div>
+                </div>
+
+                <button type="button" id="refreshBtn" class="btn btn-secondary">Refresh Storage Info</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>Task 8: Saving User Preferences | Working with localStorage & sessionStorage</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

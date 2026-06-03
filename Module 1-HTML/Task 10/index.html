@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging with Chrome DevTools - Task 10</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <p class="subtitle">Welcome to your profile</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Profile Information</h2>
+            <div class="user-info">
+                <p><strong>Name:</strong> <span id="username">John Doe</span></p>
+                <p><strong>Email:</strong> <span id="email">john@example.com</span></p>
+                <p><strong>Status:</strong> <span id="status">Active</span></p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Recent Activity</h2>
+            <ul id="activity-list">
+                <li>Logged in - 2 hours ago</li>
+                <li>Updated profile - 1 day ago</li>
+                <li>Changed password - 5 days ago</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Settings</h2>
+            <button id="toggle-notifications">Enable Notifications</button>
+            <button id="export-data">Export Data</button>
+            <button id="delete-account">Delete Account</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dashboard App. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
