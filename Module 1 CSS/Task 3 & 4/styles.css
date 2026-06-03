@@ -1,0 +1,131 @@
+/* 1. Selectors Playground */
+/* Universal selector to reset margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Typography base */
+body {
+  font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, "Helvetica Neue", Arial;
+  color: #222222; /* HEX for text */
+  background-color: #e6eef6; /* fallback background color (HEX) */
+  /* background image with fallback color */
+  background-image: linear-gradient(rgba(230,238,246,0.6), rgba(230,238,246,0.6)), url('https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=1600&q=60');
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Element selector to style all h2 */
+h2 {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  color: #0b3d91; /* HEX deep blue */
+  margin-bottom: 0.5rem;
+}
+
+/* ID selector for banner */
+#mainHeader {
+  padding: 3.5rem 1.25rem;
+  text-align: center;
+  color: #ffffff; /* text color using HEX */
+  background: rgba(11,61,145,0.85); /* RGBA overlay */
+  background-image: linear-gradient(90deg, rgba(11,61,145,0.95) 0%, rgba(3,146,166,0.9) 100%);
+}
+
+#mainHeader h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+#mainHeader h2 {
+  font-size: 1.05rem;
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+/* Class selector for event containers */
+.eventCard {
+  background: rgba(255,255,255,0.9); /* translucent white card */
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: 1rem;
+  box-shadow: 0 6px 18px rgba(11,61,145,0.08);
+  border-left: 4px solid rgba(3,146,166,0.9);
+  max-width: 520px;
+}
+
+/* Grouping selector to style h3 and p together */
+h3, p {
+  color: rgba(34,34,34,0.9); /* RGBA text color */
+}
+
+h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Layout helpers */
+main {
+  padding: 2rem 1rem 4rem 1rem;
+}
+
+.events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  align-items: start;
+  max-width: 1100px;
+  margin: 1rem auto 2rem auto;
+  padding: 0 1rem;
+}
+
+.info {
+  max-width: 900px;
+  margin: 1.25rem auto;
+  padding: 1rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+}
+
+.sectionHeader {
+  max-width: 1100px;
+  margin: 1.5rem auto 0 auto;
+  padding: 0 1rem;
+}
+
+/* Apply gradient to section headers using linear-gradient */
+.sectionHeader h2 {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(90deg, #0b3d91 0%, #0392a6 50%, #00b894 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1.25rem;
+  color: rgba(0,0,0,0.6);
+}
+
+/* Small responsive tweak */
+@media (max-width: 520px) {
+  #mainHeader { padding: 2rem 0.75rem; }
+  #mainHeader h1 { font-size: 1.4rem; }
+  .eventCard { margin: 0.5rem; }
+}

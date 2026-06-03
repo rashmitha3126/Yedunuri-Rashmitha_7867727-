@@ -1,0 +1,372 @@
+/* ===================================
+   TYPOGRAPHY: FONTS AND TEXT STYLING
+   =================================== */
+
+/* Import Google Fonts using @import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+
+/* ===================================
+   Global Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* ===================================
+   HEADER SECTION
+   font-family, font-size, font-weight
+   =================================== */
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+header h1 {
+    /* Using Playfair Display - elegant serif for main title */
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+header .tagline {
+    /* Using Poppins - modern sans-serif */
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* ===================================
+   HERO SECTION
+   text-align, line-height, letter-spacing
+   =================================== */
+
+.hero {
+    background-color: white;
+    padding: 80px 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    color: #555;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    text-transform: none;
+}
+
+/* ===================================
+   SERVICES SECTION
+   font-weight, font-size variations
+   =================================== */
+
+.services {
+    padding: 80px 40px;
+    background-color: #f8f9fa;
+}
+
+.services h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.service-card {
+    background-color: white;
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #764ba2;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.service-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #666;
+    text-align: left;
+    letter-spacing: 0.3px;
+    text-transform: none;
+}
+
+/* ===================================
+   FEATURES SECTION
+   text-align, line-height variations
+   =================================== */
+
+.features {
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.features h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+}
+
+.feature {
+    background-color: white;
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border-left: 5px solid #667eea;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #764ba2;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.feature-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.9;
+    color: #555;
+    text-align: left;
+    letter-spacing: 0.4px;
+    text-transform: capitalize;
+    font-style: normal;
+}
+
+/* ===================================
+   TESTIMONIALS SECTION
+   font-style, text-align, line-height
+   =================================== */
+
+.testimonials {
+    padding: 80px 40px;
+    background-color: white;
+}
+
+.testimonials h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+}
+
+.testimonial {
+    background-color: #f8f9fa;
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border-top: 3px solid #764ba2;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.8;
+    color: #333;
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+.testimonial-author {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+    color: #667eea;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ===================================
+   FOOTER SECTION
+   =================================== */
+
+footer {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 32px;
+    }
+
+    header .tagline {
+        font-size: 14px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .services h2,
+    .features h2,
+    .testimonials h2 {
+        font-size: 28px;
+    }
+
+    .service-card h3,
+    .feature h4 {
+        font-size: 20px;
+    }
+
+    .service-description,
+    .feature-description {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .testimonial-text {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 40px 15px;
+    }
+
+    header h1 {
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+
+    header .tagline {
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .services,
+    .features,
+    .testimonials {
+        padding: 40px 20px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .service-card,
+    .feature,
+    .testimonial {
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+
+    .service-card h3,
+    .feature h4 {
+        font-size: 18px;
+    }
+
+    .service-description,
+    .feature-description {
+        font-size: 13px;
+    }
+
+    .testimonial-text {
+        font-size: 14px;
+    }
+
+    .testimonial-author {
+        font-size: 12px;
+    }
+}

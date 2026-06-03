@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design - Code Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 1rem;
+        }
+
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: clamp(1rem, 2vw, 2rem);
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-left: 4px solid #3498db;
+        }
+
+        .example {
+            background-color: white;
+            padding: clamp(1rem, 2vw, 2rem);
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+           RESPONSIVE EXAMPLES
+           ============================================ */
+
+        /* 1. Responsive Grid Example */
+        .grid-example {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .grid-item {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 2. Responsive Flexbox Example */
+        .flex-example {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .flex-item {
+            flex: 1;
+            min-width: min(100%, 200px);
+            background-color: #9b59b6;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* 3. Flexible Typography */
+        .fluid-text h2 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+        }
+
+        .fluid-text p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 70ch;
+        }
+
+        /* 4. Responsive Image */
+        .image-example img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            max-width: 400px;
+        }
+
+        /* 5. Responsive Navigation */
+        .nav-example {
+            display: flex;
+            gap: clamp(0.5rem, 2vw, 2rem);
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .nav-link-example {
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            flex: 1;
+            min-width: min(100%, 100px);
+            text-align: center;
+        }
+
+        .nav-link-example:hover {
+            background-color: #2980b9;
+        }
+
+        /* 6. Responsive Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* 7. Responsive Table */
+        .table-example {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: clamp(0.5rem, 1vw, 1rem);
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* 8. Responsive Form */
+        .form-example {
+            display: grid;
+            gap: 1rem;
+            max-width: 600px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-example {
+            padding: 0.75rem 1.5rem;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-example:hover {
+            background-color: #229954;
+        }
+
+        /* Media Queries Examples */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            .grid-item {
+                min-height: 80px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .flex-example {
+                gap: 2rem;
+            }
+
+            .form-group {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .form-group label {
+                width: 150px;
+                margin-bottom: 0;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                flex: 1;
+            }
+        }
+
+        .info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Responsive Web Design - Interactive Examples</h1>
+
+        <!-- 1. Responsive Grid -->
+        <div class="example">
+            <div class="example-title">1. Responsive Grid with auto-fit</div>
+            <div class="info-box">
+                This grid automatically adjusts columns based on available space. Resize your browser to see it change!
+            </div>
+            <div class="code-block">
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 1rem;
+            </div>
+            <div class="grid-example">
+                <div class="grid-item">Item 1</div>
+                <div class="grid-item">Item 2</div>
+                <div class="grid-item">Item 3</div>
+                <div class="grid-item">Item 4</div>
+                <div class="grid-item">Item 5</div>
+                <div class="grid-item">Item 6</div>
+            </div>
+        </div>
+
+        <!-- 2. Flexible Flexbox -->
+        <div class="example">
+            <div class="example-title">2. Responsive Flexbox Layout</div>
+            <div class="info-box">
+                Uses flex-wrap and min-width to create a responsive layout that wraps when needed.
+            </div>
+            <div class="code-block">
+display: flex;
+flex-wrap: wrap;
+gap: clamp(0.5rem, 2vw, 2rem);
+min-width: min(100%, 200px);
+            </div>
+            <div class="flex-example">
+                <div class="flex-item">Flex Item 1</div>
+                <div class="flex-item">Flex Item 2</div>
+                <div class="flex-item">Flex Item 3</div>
+            </div>
+        </div>
+
+        <!-- 3. Fluid Typography -->
+        <div class="example">
+            <div class="example-title">3. Fluid Typography with clamp()</div>
+            <div class="info-box">
+                Font sizes scale smoothly between minimum and maximum values across all screen sizes.
+            </div>
+            <div class="code-block">
+h2 { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+p { font-size: clamp(1rem, 2vw, 1.25rem); }
+            </div>
+            <div class="fluid-text">
+                <h2>This heading scales with viewport</h2>
+                <p>This paragraph text also scales smoothly. The font size adjusts automatically between the minimum and maximum values as you resize the browser window. This technique works on all modern browsers and provides better readability across devices.</p>
+            </div>
+        </div>
+
+        <!-- 4. Responsive Image -->
+        <div class="example">
+            <div class="example-title">4. Responsive Images</div>
+            <div class="info-box">
+                Images that scale with their container while maintaining aspect ratio.
+            </div>
+            <div class="code-block">
+img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 4px;
+}
+            </div>
+            <div class="image-example">
+                <img src="https://via.placeholder.com/400x300?text=Responsive+Image" alt="Responsive image example">
+            </div>
+        </div>
+
+        <!-- 5. Responsive Navigation -->
+        <div class="example">
+            <div class="example-title">5. Responsive Navigation</div>
+            <div class="info-box">
+                Navigation links adapt to screen size with flexible gap spacing.
+            </div>
+            <div class="code-block">
+display: flex;
+gap: clamp(0.5rem, 2vw, 2rem);
+flex-wrap: wrap;
+            </div>
+            <div class="nav-example">
+                <a href="#" class="nav-link-example">Home</a>
+                <a href="#" class="nav-link-example">About</a>
+                <a href="#" class="nav-link-example">Services</a>
+                <a href="#" class="nav-link-example">Contact</a>
+            </div>
+        </div>
+
+        <!-- 6. Responsive Card Grid -->
+        <div class="example">
+            <div class="example-title">6. Responsive Card Grid</div>
+            <div class="info-box">
+                Cards automatically arrange in rows based on available space.
+            </div>
+            <div class="code-block">
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+            </div>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img">Card Image 1</div>
+                    <div class="card-content">
+                        <h3>Card Title 1</h3>
+                        <p>This card automatically adjusts its size based on the available space.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">Card Image 2</div>
+                    <div class="card-content">
+                        <h3>Card Title 2</h3>
+                        <p>The layout is responsive and works on all device sizes.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">Card Image 3</div>
+                    <div class="card-content">
+                        <h3>Card Title 3</h3>
+                        <p>Resize your browser to see how it adapts!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Responsive Table -->
+        <div class="example">
+            <div class="example-title">7. Responsive Table</div>
+            <div class="info-box">
+                Table with scroll on mobile devices.
+            </div>
+            <div class="table-example">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th>Width</th>
+                            <th>Columns</th>
+                            <th>Layout</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mobile</td>
+                            <td>&lt; 480px</td>
+                            <td>1</td>
+                            <td>Stacked</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet</td>
+                            <td>480px - 768px</td>
+                            <td>2</td>
+                            <td>2 Columns</td>
+                        </tr>
+                        <tr>
+                            <td>Desktop</td>
+                            <td>768px - 1024px</td>
+                            <td>3-4</td>
+                            <td>Grid</td>
+                        </tr>
+                        <tr>
+                            <td>Large Desktop</td>
+                            <td>&gt; 1024px</td>
+                            <td>4+</td>
+                            <td>Full Grid</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 8. Responsive Form -->
+        <div class="example">
+            <div class="example-title">8. Responsive Form</div>
+            <div class="info-box">
+                Form that stacks on mobile and arranges side-by-side on larger screens.
+            </div>
+            <div class="code-block">
+@media (max-width: 480px) {
+    .form-group { flex-direction: column; }
+}
+@media (min-width: 768px) {
+    .form-group { flex-direction: row; }
+}
+            </div>
+            <form class="form-example">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" placeholder="Your message..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn-example">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Key Concepts -->
+        <div class="example">
+            <div class="example-title">📚 Key Responsive Design Concepts</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span class="tag">Mobile-First</span>
+                <span class="tag">Media Queries</span>
+                <span class="tag">Flexible Units (%)</span>
+                <span class="tag">Viewport Units (vw/vh)</span>
+                <span class="tag">Flexbox</span>
+                <span class="tag">CSS Grid</span>
+                <span class="tag">Fluid Typography</span>
+                <span class="tag">Responsive Images</span>
+                <span class="tag">auto-fit/auto-fill</span>
+                <span class="tag">clamp()</span>
+                <span class="tag">min()</span>
+                <span class="tag">max()</span>
+            </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="example" style="margin-bottom: 3rem;">
+            <div class="example-title">💡 Pro Tips for Responsive Design</div>
+            <div class="info-box">
+                <strong>1. Mobile-First Approach:</strong> Design for mobile first, then enhance for larger screens.
+            </div>
+            <div class="info-box">
+                <strong>2. Use Flexible Units:</strong> Prefer %, em, rem over fixed pixels for better scalability.
+            </div>
+            <div class="info-box">
+                <strong>3. Test on Real Devices:</strong> Browser dev tools are helpful, but test on actual devices.
+            </div>
+            <div class="info-box">
+                <strong>4. Touch Targets:</strong> Make buttons and links at least 44x44px for mobile touch.
+            </div>
+            <div class="info-box">
+                <strong>5. Content-First Breakpoints:</strong> Use breakpoints where content breaks, not device sizes.
+            </div>
+            <div class="info-box">
+                <strong>6. Progressive Enhancement:</strong> Start with basic functionality and add features for advanced browsers.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add interactivity to show/hide code blocks
+        document.querySelectorAll('.code-block').forEach(block => {
+            block.style.cursor = 'pointer';
+            block.addEventListener('click', function() {
+                this.style.display = this.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

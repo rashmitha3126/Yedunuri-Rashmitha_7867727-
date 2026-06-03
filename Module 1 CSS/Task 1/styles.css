@@ -1,0 +1,99 @@
+/* ===========================
+   EXTERNAL STYLESHEET
+   Local Community Event Portal
+   =========================== */
+
+/* ===== Header Styles ===== */
+h2 {
+    color: #333;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #555;
+    margin-top: 15px;
+}
+
+/* ===== Event Card Styles ===== */
+.event-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.event-date {
+    font-weight: bold;
+    color: #007bff;
+    margin: 10px 0;
+}
+
+.event-description {
+    color: #666;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+/* ===== Button Styles ===== */
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn:active {
+    background-color: #004085;
+}
+
+/* ===== Resource Section Styles ===== */
+.resource-section {
+    background-color: #e7f3ff;
+    border-left: 4px solid #007bff;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.resource-section h3 {
+    color: #007bff;
+    margin-top: 0;
+}
+
+.resource-section p {
+    color: #555;
+    margin: 5px 0;
+}
+
+/* ===== Footer Styles ===== */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 4px;
+}
+
+footer p {
+    margin: 0;
+}

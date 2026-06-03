@@ -1,0 +1,28 @@
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+.container{
+    width:350px;
+    margin:50px auto;
+    padding:20px;
+    background:white;
+    border-radius:8px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+}
+
+#message{
+    margin-top:15px;
+    font-weight:bold;
+}

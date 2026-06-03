@@ -1,0 +1,660 @@
+/* ======================================
+   RESPONSIVE WEB DESIGN WITH MEDIA QUERIES
+   ====================================== */
+
+/* Root Variables */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --text-color: #333;
+    --light-bg: #ecf0f1;
+    --white: #fff;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================================
+   BASE STYLES - MOBILE FIRST APPROACH
+   ====================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* Use vh for responsive font sizing */
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+/* Container with responsive width using % */
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ======================================
+   HEADER & NAVIGATION (Mobile First)
+   ====================================== */
+
+.header {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 1rem 0;
+    box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Navigation stacked vertically on mobile (default) */
+.nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.nav-link:hover {
+    background-color: var(--primary-color);
+}
+
+/* ======================================
+   HERO SECTION
+   ====================================== */
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 4rem 1rem;
+    text-align: center;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    /* Use vw for responsive font sizing */
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* ======================================
+   ABOUT SECTION
+   ====================================== */
+
+.about {
+    padding: 3rem 1rem;
+    background-color: var(--light-bg);
+}
+
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Grid layout - stacked on mobile */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.about-text {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+}
+
+/* ======================================
+   SERVICES SECTION
+   ====================================== */
+
+.services {
+    padding: 3rem 1rem;
+}
+
+.services h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Grid layout - 1 column on mobile, responsive */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.service-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.5rem;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.service-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ======================================
+   PORTFOLIO SECTION
+   ====================================== */
+
+.portfolio {
+    padding: 3rem 1rem;
+    background-color: var(--light-bg);
+}
+
+.portfolio h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Grid layout - 1 column on mobile */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+.portfolio-item h3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: var(--white);
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* ======================================
+   CONTACT SECTION
+   ====================================== */
+
+.contact {
+    padding: 3rem 1rem;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* ======================================
+   FOOTER
+   ====================================== */
+
+.footer {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.footer p {
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.social-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--white);
+}
+
+/* ======================================
+   MEDIA QUERIES
+   Tablet: 768px and up
+   ====================================== */
+
+@media (min-width: 768px) {
+    /* Header - Navigation horizontal */
+    .header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    /* Navigation horizontal */
+    .nav {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        gap: 1rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+        background-color: transparent;
+        border-bottom: 2px solid transparent;
+        text-align: left;
+    }
+
+    .nav-link:hover {
+        background-color: transparent;
+        border-bottom-color: var(--primary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 6rem 1rem;
+        min-height: 60vh;
+    }
+
+    .hero h2 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.4rem;
+    }
+
+    /* About Section */
+    .about {
+        padding: 4rem 1rem;
+    }
+
+    .about h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Grid - 2 columns on tablet */
+    .about-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .about-img {
+        max-width: 100%;
+    }
+
+    /* Services Section */
+    .services {
+        padding: 4rem 1rem;
+    }
+
+    .services h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Grid - 2 columns on tablet */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+        padding: 4rem 1rem;
+    }
+
+    .portfolio h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Grid - 2 columns on tablet */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .portfolio-item img {
+        height: 300px;
+    }
+
+    /* Contact Section */
+    .contact {
+        padding: 4rem 1rem;
+    }
+
+    .contact h2 {
+        font-size: 2.5rem;
+    }
+
+    /* Footer */
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .social-links {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+}
+
+/* ======================================
+   MEDIA QUERIES
+   Desktop: 1024px and up
+   ====================================== */
+
+@media (min-width: 1024px) {
+    /* Larger font sizes */
+    html {
+        font-size: 18px;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 8rem 1rem;
+        min-height: 70vh;
+    }
+
+    .hero h2 {
+        font-size: 3.5rem;
+    }
+
+    .hero p {
+        font-size: 1.6rem;
+    }
+
+    /* About Section */
+    .about h2 {
+        font-size: 3rem;
+    }
+
+    /* Services Section */
+    .services h2 {
+        font-size: 3rem;
+    }
+
+    /* Grid - 4 columns on desktop */
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+
+    /* Portfolio Section */
+    .portfolio h2 {
+        font-size: 3rem;
+    }
+
+    /* Grid - 3 columns on desktop */
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .portfolio-item img {
+        height: 350px;
+    }
+
+    /* Contact Section */
+    .contact h2 {
+        font-size: 3rem;
+    }
+
+    .contact-form {
+        max-width: 600px;
+    }
+}
+
+/* ======================================
+   MEDIA QUERIES
+   Large Desktop: 1440px and up
+   ====================================== */
+
+@media (min-width: 1440px) {
+    .container {
+        width: 90%;
+    }
+
+    .hero h2 {
+        font-size: 4rem;
+    }
+
+    .services h2,
+    .portfolio h2,
+    .about h2 {
+        font-size: 3.5rem;
+    }
+}
+
+/* ======================================
+   MEDIA QUERIES
+   Small Phones: 320px - 480px (Extra Small)
+   ====================================== */
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .about h2,
+    .services h2,
+    .portfolio h2,
+    .contact h2 {
+        font-size: 1.5rem;
+    }
+
+    .service-card img {
+        height: 150px;
+    }
+
+    .portfolio-item img {
+        height: 200px;
+    }
+
+    .contact-form {
+        max-width: 100%;
+    }
+}
+
+/* ======================================
+   MEDIA QUERIES
+   High Resolution Screens (Retina)
+   ====================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Slightly adjust for better readability on high-res screens */
+    body {
+        font-size: 1.05rem;
+    }
+}
+
+/* ======================================
+   PRINT STYLES
+   ====================================== */
+
+@media print {
+    .header,
+    .footer,
+    .contact {
+        display: none;
+    }
+
+    body {
+        background-color: var(--white);
+        font-size: 12pt;
+    }
+
+    .portfolio-grid,
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ======================================
+   ACCESSIBILITY
+   ====================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

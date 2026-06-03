@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.eventCard {
+  border: 2px solid #2a9d8f;
+  padding: 16px;
+  margin: 12px 0;
+  border-radius: 6px;
+  background: #f8fdfc;
+}
+form#signup label {
+  display: block;
+  margin-bottom: 12px;
+}
+form#signup input,
+form#signup textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+/* Outline to highlight selected fields in a form */
+form#signup input:focus,
+form#signup textarea:focus {
+  outline: 3px solid #ffb703;
+  outline-offset: 3px;
+}
+.demo-controls { margin: 8px 0; }
+.demo-boxes { display:flex; gap:16px; align-items:center; margin-top:8px; }
+.demo-box { padding: 12px; border: 1px dashed #666; width:220px; text-align:center; }
+.is-hidden { visibility: hidden; opacity: 0.6; }
+.is-none { display: none; }

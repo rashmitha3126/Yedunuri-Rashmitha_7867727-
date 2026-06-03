@@ -1,0 +1,23 @@
+body {
+    font-family: Arial;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+h1 {
+    color: darkblue;
+}
+
+#loading {
+    font-size: 20px;
+    color: red;
+    margin-top: 20px;
+}
+
+.event-card {
+    background-color: white;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px gray;
+}

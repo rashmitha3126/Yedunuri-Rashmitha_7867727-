@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Box Model & Layout Control - Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Box Model & Layout Control</h1>
+
+  <section class="events">
+    <div class="eventCard">
+      <h2>Event One</h2>
+      <p>Details about event one. The card has border, padding, and margin.</p>
+    </div>
+    <div class="eventCard">
+      <h2>Event Two</h2>
+      <p>Another event card demonstrating spacing.</p>
+    </div>
+  </section>
+
+  <section class="formDemo">
+    <h2>Form Outline on Focus</h2>
+    <form id="signup">
+      <label>
+        Name<br>
+        <input type="text" name="name" placeholder="Your name">
+      </label>
+      <label>
+        Email<br>
+        <input type="email" name="email" placeholder="you@example.com">
+      </label>
+      <label>
+        Message<br>
+        <textarea name="message" rows="4" placeholder="Message"></textarea>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="visibilityDemo">
+    <h2>visibility: hidden vs display: none</h2>
+    <div class="demo-controls">
+      <button id="toggleHidden">Toggle visibility:hidden</button>
+      <button id="toggleNone">Toggle display:none</button>
+    </div>
+    <div class="demo-boxes">
+      <div id="boxHidden" class="demo-box">I use visibility: hidden (still takes space)</div>
+      <div id="boxNone" class="demo-box">I use display: none (removed from layout)</div>
+    </div>
+  </section>
+
+  <script>
+    const boxHidden = document.getElementById('boxHidden');
+    const boxNone = document.getElementById('boxNone');
+    document.getElementById('toggleHidden').addEventListener('click', () => {
+      boxHidden.classList.toggle('is-hidden');
+    });
+    document.getElementById('toggleNone').addEventListener('click', () => {
+      boxNone.classList.toggle('is-none');
+    });
+  </script>
+</body>
+</html>

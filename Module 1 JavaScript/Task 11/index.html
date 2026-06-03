@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Event Registration Form</h2>
+
+        <form id="registrationForm">
+
+            <label>Name:</label>
+            <input type="text" name="name">
+            <span class="error" id="nameError"></span>
+
+            <label>Email:</label>
+            <input type="email" name="email">
+            <span class="error" id="emailError"></span>
+
+            <label>Select Event:</label>
+            <select name="event">
+                <option value="">Choose Event</option>
+                <option value="Music Festival">Music Festival</option>
+                <option value="Food Fair">Food Fair</option>
+                <option value="Tech Workshop">Tech Workshop</option>
+            </select>
+            <span class="error" id="eventError"></span>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <p id="successMessage"></p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
